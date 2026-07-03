@@ -23,7 +23,7 @@ function createWindow() {
     minWidth: 700,
     minHeight: 500,
     title: 'NexDown Desktop',
-    icon: path.join(__dirname, '..', 'extension', 'icon128.png'),
+    icon: path.join(__dirname, 'assets', 'icon.png'),
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false, // Since this is a simple local app with local server
