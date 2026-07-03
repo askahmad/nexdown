@@ -13,15 +13,15 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 650,
-    height: 520,
-    minWidth: 550,
-    minHeight: 450,
-    title: 'NexDown Desktop Assistant',
+    width: 850,
+    height: 650,
+    minWidth: 700,
+    minHeight: 500,
+    title: 'NexDown Desktop',
     icon: path.join(__dirname, '..', 'extension', 'icon128.png'),
     webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
+      nodeIntegration: true,
+      contextIsolation: false, // Since this is a simple local app with local server
     },
     autoHideMenuBar: true, // Clean native UI window
   });

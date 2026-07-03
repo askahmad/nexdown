@@ -6,7 +6,23 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "electron": "electron ."
+    "electron": "electron .",
+    "build": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.nexdown.desktop",
+    "productName": "NexDown",
+    "win": {
+      "target": "nsis",
+      "icon": "../extension/icon128.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "output": "dist"
+    }
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -14,6 +30,7 @@
   },
   "devDependencies": {
     "electron": "^42.5.0",
+    "electron-builder": "^26.15.3",
     "nodemon": "^3.0.1"
   }
 }
