@@ -12,6 +12,13 @@
   "build": {
     "appId": "com.nexdown.desktop",
     "productName": "NexDown",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Ahmedkhn143",
+        "repo": "Video-Downlode-Extension"
+      }
+    ],
     "win": {
       "target": "nsis",
       "icon": "../extension/icon128.png"
@@ -24,8 +31,11 @@
       "output": "dist"
     }
   },
+  "author": "Ahmad Khan",
+  "repository": "https://github.com/Ahmedkhn143/Video-Downlode-Extension",
   "dependencies": {
     "cors": "^2.8.5",
+    "electron-updater": "^6.8.9",
     "express": "^4.18.2"
   },
   "devDependencies": {

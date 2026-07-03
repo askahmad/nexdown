@@ -324,6 +324,45 @@
       accent-color: #4f7cff;
       cursor: pointer;
     }
+
+    /* ── Update Banner ── */
+    #update-banner {
+      display: none;
+      background: linear-gradient(90deg, #4f7cff, #a259ff);
+      color: #fff;
+      padding: 10px 24px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    #update-banner.show { display: flex; }
+    .btn-update {
+      background: #fff;
+      color: #4f7cff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 12px;
+      display: none;
+    }
+    .btn-update:hover { background: #f0f0f0; }
+
+    /* ── Footer ── */
+    .footer {
+      background: #11121a;
+      border-top: 1px solid #1e2130;
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      color: #8c8f9f;
+    }
+    .footer span {
+      color: #4f7cff;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -337,6 +376,12 @@
     </div>
     <button class="btn-open-folder" id="btn-open-folder" title="Open Downloads Folder">&#x1F4C2; Open Folder</button>
     <div class="status-dot" id="status-dot" title="Local Server Status"></div>
+  </div>
+
+  <!-- Update Banner -->
+  <div id="update-banner">
+    <span id="update-text">Checking for updates...</span>
+    <button class="btn-update" id="btn-update-install">Restart & Install</button>
   </div>
 
   <div class="dashboard">
@@ -409,6 +454,10 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="footer">
+    Developed by <span>Ahmad Khan</span>
   </div>
 
   <script src="dashboard.js"></script>

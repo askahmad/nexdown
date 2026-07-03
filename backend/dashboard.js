@@ -4,6 +4,8 @@
 
 const BACKEND = 'http://localhost:7474';
 
+const { ipcRenderer } = require('electron');
+
 // DOM refs
 const statusDot      = document.getElementById('status-dot');
 const urlInput       = document.getElementById('url-input');
@@ -21,6 +23,33 @@ const playlistRangeRow = document.getElementById('playlist-range-row');
 const playlistRangeInput = document.getElementById('playlist-range-input');
 const chkEmbed       = document.getElementById('chk-embed');
 const pathInput      = document.getElementById('path-input');
+
+// ── Update Banner Elements ──
+const updateBanner = document.getElementById('update-banner');
+const updateText = document.getElementById('update-text');
+const btnUpdateInstall = document.getElementById('btn-update-install');
+
+if (ipcRenderer) {
+  ipcRenderer.on('update_status', (event, data) => {
+    if (data.status === 'not-available') {
+      updateBanner.classList.remove('show');
+      return;
+    }
+    
+    updateBanner.classList.add('show');
+    updateText.textContent = data.text;
+    
+    if (data.status === 'downloaded') {
+      btnUpdateInstall.style.display = 'block';
+    } else {
+      btnUpdateInstall.style.display = 'none';
+    }
+  });
+
+  btnUpdateInstall.addEventListener('click', () => {
+    ipcRenderer.send('install-update');
+  });
+}
 
 const PLAYLIST_PATTERNS = [
   /[?&]list=[A-Za-z0-9_-]+/,

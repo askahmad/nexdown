@@ -1,5 +1,10 @@
-const { app, BrowserWindow, shell } = require('electron');
+const { app, BrowserWindow, shell, ipcMain } = require('electron');
 const path = require('path');
+const { autoUpdater } = require('electron-updater');
+
+// Basic auto-updater configuration
+autoUpdater.autoDownload = true;
+autoUpdater.autoInstallOnAppQuit = true;
 
 // 1. Start the Express server in the background
 try {
@@ -37,10 +42,41 @@ function createWindow() {
     shell.openExternal(url);
     return { action: 'deny' };
   });
+
+  // ── Auto-Updater Events ──
+  autoUpdater.on('checking-for-update', () => {
+    mainWindow.webContents.send('update_status', { status: 'checking', text: 'Checking for updates...' });
+  });
+  autoUpdater.on('update-available', (info) => {
+    mainWindow.webContents.send('update_status', { status: 'available', text: 'Update available. Downloading...' });
+  });
+  autoUpdater.on('update-not-available', (info) => {
+    // Optionally notify or ignore
+    mainWindow.webContents.send('update_status', { status: 'not-available' });
+  });
+  autoUpdater.on('error', (err) => {
+    mainWindow.webContents.send('update_status', { status: 'error', text: 'Error checking for updates' });
+  });
+  autoUpdater.on('download-progress', (progressObj) => {
+    let msg = `Downloading update: ${Math.round(progressObj.percent)}%`;
+    mainWindow.webContents.send('update_status', { status: 'downloading', text: msg });
+  });
+  autoUpdater.on('update-downloaded', (info) => {
+    mainWindow.webContents.send('update_status', { status: 'downloaded', text: 'Update ready to install!' });
+  });
+
+  ipcMain.on('install-update', () => {
+    autoUpdater.quitAndInstall();
+  });
 }
 
 app.whenReady().then(() => {
   createWindow();
+
+  // Check for updates shortly after app opens
+  setTimeout(() => {
+    autoUpdater.checkForUpdatesAndNotify().catch(() => {});
+  }, 2000);
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
