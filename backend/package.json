@@ -23,6 +23,9 @@
       "target": "nsis",
       "icon": "assets/icon.png"
     },
+    "extraResources": [
+      "yt-dlp.exe"
+    ],
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true

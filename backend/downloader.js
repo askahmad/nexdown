@@ -1,4 +1,4 @@
-﻿// ─────────────────────────────────────────────
+// ─────────────────────────────────────────────
 //  NexDown — downloader.js
 //  Wraps yt-dlp CLI to download videos & playlists
 //
@@ -50,7 +50,12 @@ const wingetLinks = process.env.LOCALAPPDATA
 addToPath(wingetLinks);
 
 let ytDlpBin = null;
-const localYtDlp = path.join(__dirname, 'yt-dlp.exe');
+
+const isPackaged = __dirname.includes('app.asar');
+const localYtDlp = isPackaged 
+  ? path.join(process.resourcesPath, 'yt-dlp.exe') 
+  : path.join(__dirname, 'yt-dlp.exe');
+
 if (fs.existsSync(localYtDlp)) {
   ytDlpBin = localYtDlp;
 }
