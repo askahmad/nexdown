@@ -31,12 +31,17 @@ const btnUpdateInstall = document.getElementById('btn-update-install');
 
 if (ipcRenderer) {
   ipcRenderer.on('update_status', (event, data) => {
+    updateBanner.classList.add('show');
+    
     if (data.status === 'not-available') {
-      updateBanner.classList.remove('show');
+      updateText.textContent = 'App is up to date ✓';
+      // Hide it after 3 seconds
+      setTimeout(() => {
+        updateBanner.classList.remove('show');
+      }, 3000);
       return;
     }
     
-    updateBanner.classList.add('show');
     updateText.textContent = data.text;
     
     if (data.status === 'downloaded') {
