@@ -73,9 +73,11 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
 
-  // Check for updates shortly after app opens
+  // Check for updates shortly after app opens (only in packaged production environment)
   setTimeout(() => {
-    autoUpdater.checkForUpdatesAndNotify().catch(() => {});
+    if (app.isPackaged) {
+      autoUpdater.checkForUpdatesAndNotify().catch(() => {});
+    }
   }, 2000);
 
   app.on('activate', () => {

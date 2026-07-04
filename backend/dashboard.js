@@ -41,6 +41,15 @@ if (ipcRenderer) {
       }, 3000);
       return;
     }
+
+    if (data.status === 'error') {
+      updateText.textContent = data.text || 'Error checking for updates';
+      // Hide it after 3 seconds
+      setTimeout(() => {
+        updateBanner.classList.remove('show');
+      }, 3000);
+      return;
+    }
     
     updateText.textContent = data.text;
     
