@@ -44,25 +44,51 @@ function createWindow() {
   });
 
   // ── Auto-Updater Events ──
+  autoUpdater.logger = console;
+
   autoUpdater.on('checking-for-update', () => {
-    mainWindow.webContents.send('update_status', { status: 'checking', text: 'Checking for updates...' });
+    console.log('[AutoUpdater] Checking for updates...');
   });
+
   autoUpdater.on('update-available', (info) => {
-    mainWindow.webContents.send('update_status', { status: 'available', text: 'Update available. Downloading...' });
+    console.log('[AutoUpdater] Update available:', info?.version);
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('update_status', {
+        status: 'available',
+        text: `Update available (${info?.version || 'new version'}). Downloading...`
+      });
+    }
   });
+
   autoUpdater.on('update-not-available', (info) => {
-    // Optionally notify or ignore
-    mainWindow.webContents.send('update_status', { status: 'not-available' });
+    console.log('[AutoUpdater] App is up to date.');
   });
+
   autoUpdater.on('error', (err) => {
-    mainWindow.webContents.send('update_status', { status: 'error', text: 'Error checking for updates' });
+    // Senior Best Practice: Background startup update checks must fail silently.
+    // Do not disrupt the user with an error banner if offline or no GitHub release is found.
+    console.warn('[AutoUpdater] Background update check failed (silent):', err ? (err.message || err) : err);
   });
+
   autoUpdater.on('download-progress', (progressObj) => {
-    let msg = `Downloading update: ${Math.round(progressObj.percent)}%`;
-    mainWindow.webContents.send('update_status', { status: 'downloading', text: msg });
+    const percent = Math.round(progressObj.percent);
+    console.log(`[AutoUpdater] Download: ${percent}%`);
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('update_status', {
+        status: 'downloading',
+        text: `Downloading update: ${percent}%`
+      });
+    }
   });
+
   autoUpdater.on('update-downloaded', (info) => {
-    mainWindow.webContents.send('update_status', { status: 'downloaded', text: 'Update ready to install!' });
+    console.log('[AutoUpdater] Update downloaded:', info?.version);
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('update_status', {
+        status: 'downloaded',
+        text: `Update ready to install!`
+      });
+    }
   });
 
   ipcMain.on('install-update', () => {

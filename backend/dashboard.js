@@ -31,32 +31,19 @@ const btnUpdateInstall = document.getElementById('btn-update-install');
 
 if (ipcRenderer) {
   ipcRenderer.on('update_status', (event, data) => {
-    updateBanner.classList.add('show');
-    
-    if (data.status === 'not-available') {
-      updateText.textContent = 'App is up to date ✓';
-      // Hide it after 3 seconds
-      setTimeout(() => {
-        updateBanner.classList.remove('show');
-      }, 3000);
-      return;
-    }
+    // Only display banner when an update is actively available, downloading, or ready to install
+    if (data.status === 'available' || data.status === 'downloading' || data.status === 'downloaded') {
+      updateBanner.classList.add('show');
+      updateText.textContent = data.text;
 
-    if (data.status === 'error') {
-      updateText.textContent = data.text || 'Error checking for updates';
-      // Hide it after 3 seconds
-      setTimeout(() => {
-        updateBanner.classList.remove('show');
-      }, 3000);
-      return;
-    }
-    
-    updateText.textContent = data.text;
-    
-    if (data.status === 'downloaded') {
-      btnUpdateInstall.style.display = 'block';
+      if (data.status === 'downloaded') {
+        btnUpdateInstall.style.display = 'block';
+      } else {
+        btnUpdateInstall.style.display = 'none';
+      }
     } else {
-      btnUpdateInstall.style.display = 'none';
+      // Hide banner for silent background states (checking, not-available, error)
+      updateBanner.classList.remove('show');
     }
   });
 
