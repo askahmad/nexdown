@@ -15,8 +15,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "Ahmedkhn143",
-        "repo": "Video-Downlode-Extension"
+        "owner": "askahmad",
+        "repo": "nexdown"
       }
     ],
     "win": {
@@ -35,7 +35,7 @@
     }
   },
   "author": "Ahmad Khan",
-  "repository": "https://github.com/Ahmedkhn143/Video-Downlode-Extension",
+  "repository": "https://github.com/askahmad/nexdown",
   "dependencies": {
     "cors": "^2.8.5",
     "electron-updater": "^6.8.9",
