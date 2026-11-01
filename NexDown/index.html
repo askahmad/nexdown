@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexDown | Free Video Downloader for YouTube and 1,000+ Sites</title>
+    <meta name="description" content="Download videos and audio from YouTube, TikTok, Instagram, Vimeo, and 1,000+ sites with the free NexDown desktop app.">
+    <meta name="keywords" content="video downloader, free video downloader, youtube downloader, download youtube video, mp4 converter, mp3 downloader, download tiktok without watermark, instagram video downloader, nexdown">
+    <meta name="author" content="Ahmad Khan">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nexdown.netlify.app/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexdown.netlify.app/">
+    <meta property="og:title" content="NexDown | Free Video Downloader for YouTube and 1,000+ Sites">
+    <meta property="og:description" content="Download videos and audio from YouTube, TikTok, Instagram, Vimeo, and 1,000+ sites with the free NexDown app.">
+    <meta property="og:image" content="https://nexdown.netlify.app/assets/dashboard.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nexdown.netlify.app/">
+    <meta property="twitter:title" content="NexDown | Free Video Downloader for YouTube and 1,000+ Sites">
+    <meta property="twitter:description" content="Download videos and audio from YouTube, TikTok, Instagram, Vimeo, and 1,000+ sites with the free NexDown app.">
+    <meta property="twitter:image" content="https://nexdown.netlify.app/assets/dashboard.png">
+
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "NexDown",
+      "operatingSystem": "Windows, macOS, Linux, Android, iOS",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      },
+      "description": "Download videos and audio from YouTube, TikTok, Instagram, Vimeo, and 1,000+ sites for free with NexDown.",
+      "ratingValue": "4.8",
+      "ratingCount": "5420"
+    }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-white">
+    <!-- Ambient Background Effects -->
+    <div class="ambient-bg">
+        <div class="ambient-blob blob-purple top-left"></div>
+        <div class="ambient-blob blob-violet top-right"></div>
+        <div class="ambient-blob blob-purple-light bottom-left"></div>
+        <div class="ambient-blob blob-violet-light bottom-right"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <img src="assets/logo.png" alt="NexDown Logo" style="width: 32px; height: 32px; border-radius: 8px;" />
+                <span class="logo-text">NexDown</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="online.html" target="_blank" class="btn btn-primary">
+                    <i data-lucide="globe" class="w-4 h-4"></i>
+                    <span>Try Online</span>
+                </a>
+                <a href="assets/NexDown-Setup.exe" class="btn btn-primary-gradient">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Download</span>
+                    <i data-lucide="chevron-down" class="w-4 h-4 ml-1 opacity-70"></i>
+                </a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="version-badge">
+                        <span class="ping-dot"></span>
+                        Version 1.0.1 Released
+                    </div>
+                    
+                    <h1 class="hero-title">Free video downloader for YouTube and 1,000+ sites</h1>
+                    <p class="hero-subtitle">Save MP4 or MP3 files from YouTube, TikTok, Instagram, Vimeo, and more with a secure desktop app that runs on Windows, macOS, and Linux—no browser extensions or sign-ups required.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="online.html" target="_blank" class="btn btn-primary btn-large">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                            <span>Try Online</span>
+                        </a>
+                        <a href="assets/NexDown-Setup.exe" class="btn btn-primary-gradient btn-large">
+                            <i data-lucide="download" class="w-5 h-5"></i>
+                            <span>Download</span>
+                            <i data-lucide="chevron-down" class="w-5 h-5 ml-1 opacity-70"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <i data-lucide="check" class="text-green-400 w-5 h-5"></i>
+                            <span>No ads, no watermarks, unlimited downloads</span>
+                        </div>
+                        <div class="trust-item mt-3">
+                            <i data-lucide="globe" class="text-slate-400 w-4 h-4"></i>
+                            <span class="text-slate-400 text-sm">Supports 1000+ websites with playlists, subtitles, and high-bitrate audio</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Brand Icons Row -->
+                    <div class="brand-icons">
+                        <div class="brand-icon bg-red-600"><i data-lucide="youtube" class="w-5 h-5 text-white"></i></div>
+                        <div class="brand-icon bg-purple-600"><i data-lucide="twitch" class="w-5 h-5 text-white"></i></div>
+                        <div class="brand-icon bg-gradient-instagram"><i data-lucide="instagram" class="w-5 h-5 text-white"></i></div>
+                        <div class="brand-icon bg-black"><i data-lucide="twitter" class="w-5 h-5 text-white"></i></div>
+                        <div class="brand-icon bg-blue-600"><i data-lucide="facebook" class="w-5 h-5 text-white"></i></div>
+                        <div class="brand-icon bg-slate-700"><i data-lucide="more-horizontal" class="w-5 h-5 text-white"></i></div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="app-mockup" style="padding: 4px; background: rgba(30, 41, 59, 0.5);">
+                        <img src="assets/dashboard.png" alt="NexDown Dashboard" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value text-gradient-purple">1000+</div>
+                        <div class="stat-label">Supported Sites</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value text-gradient-purple">5M+</div>
+                        <div class="stat-label">Downloads</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value text-gradient-purple">4.8/5</div>
+                        <div class="stat-label">User Rating</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value text-gradient-purple">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Built for Discoverability Section -->
+        <section class="trust-section">
+            <div class="container">
+                <div class="trust-grid">
+                    <div class="trust-content">
+                        <h2>Built for discoverability and user trust</h2>
+                        <p class="text-muted">NexDown ships with an optimized core, frequent updates, and safe protocols so you can download videos securely from YouTube, TikTok, Instagram, Vimeo, and hundreds of other streaming sites.</p>
+                        
+                        <div class="features-list">
+                            <div class="feature-line">
+                                <i data-lucide="check" class="text-green-400 w-5 h-5"></i>
+                                <span>High-quality downloads up to 8K video and lossless audio</span>
+                            </div>
+                            <div class="feature-line">
+                                <i data-lucide="check" class="text-green-400 w-5 h-5"></i>
+                                <span>Batch download playlists, channels, and whole courses</span>
+                            </div>
+                            <div class="feature-line">
+                                <i data-lucide="check" class="text-green-400 w-5 h-5"></i>
+                                <span>Smart filename templates for creators and educators</span>
+                            </div>
+                            <div class="feature-line">
+                                <i data-lucide="check" class="text-green-400 w-5 h-5"></i>
+                                <span>Safe by design: open-source core with frequent security updates</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trust-sidebar">
+                        <div class="glass-card">
+                            <h3>Quick keyword checklist</h3>
+                            <ul class="checklist text-muted">
+                                <li>YouTube video downloader</li>
+                                <li>Download playlists and channels</li>
+                                <li>Free MP4 and MP3 converter</li>
+                                <li>Windows, macOS, Linux support</li>
+                                <li>Secure, ad-free downloads</li>
+                            </ul>
+                            <p class="text-sm mt-4 text-slate-400">Use these phrases in blog posts, support docs, and app store listings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="badge-subtle"><i data-lucide="zap" class="w-4 h-4"></i> Powerful Features</div>
+                    <h2>Everything you need to download videos safely</h2>
+                    <p class="text-muted max-w-2xl mx-auto">NexDown combines performance, safety, and ease of use to deliver reliable MP4 and MP3 downloads from your favorite platforms.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card glass-panel hover-purple">
+                        <div class="icon-wrapper text-purple-400 bg-purple-500/10">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p class="text-muted">Multi-threaded downloading for maximum speed. Download videos in seconds, not minutes.</p>
+                    </div>
+                    <div class="feature-card glass-panel hover-violet">
+                        <div class="icon-wrapper text-violet-400 bg-violet-500/10">
+                            <i data-lucide="globe" class="w-6 h-6"></i>
+                        </div>
+                        <h3>1000+ Sites</h3>
+                        <p class="text-muted">Support for YouTube, Vimeo, Facebook, Twitter, Instagram, TikTok, Twitch, and many more.</p>
+                    </div>
+                    <div class="feature-card glass-panel hover-green">
+                        <div class="icon-wrapper text-green-400 bg-green-500/10">
+                            <i data-lucide="monitor" class="w-6 h-6"></i>
+                        </div>
+                        <h3>All Platforms</h3>
+                        <p class="text-muted">Available for Windows, macOS, and Linux. Native desktop application with no browser required.</p>
+                    </div>
+                    <div class="feature-card glass-panel hover-pink">
+                        <div class="icon-wrapper text-pink-400 bg-pink-500/10">
+                            <i data-lucide="layers" class="w-6 h-6"></i>
+                        </div>
+                        <h3>Unlimited Downloads</h3>
+                        <p class="text-muted">No limits on the number of videos you can download. Batch download entire playlists and channels.</p>
+                    </div>
+                    <div class="feature-card glass-panel hover-orange">
+                        <div class="icon-wrapper text-orange-400 bg-orange-500/10">
+                            <i data-lucide="settings" class="w-6 h-6"></i>
+                        </div>
+                        <h3>Format Options</h3>
+                        <p class="text-muted">Download in MP4, MP3, MKV and other formats with custom quality settings up to 8K resolution.</p>
+                    </div>
+                    <div class="feature-card glass-panel hover-cyan">
+                        <div class="icon-wrapper text-cyan-400 bg-cyan-500/10">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <h3>Safe & Secure</h3>
+                        <p class="text-muted">No ads, no malware, no tracking. Your privacy is our priority with regular security updates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works-section relative">
+            <div class="bg-overlay"></div>
+            <div class="container relative z-10">
+                <div class="section-header text-center">
+                    <div class="badge-subtle text-green-400 bg-green-500/10 border-green-500/20"><i data-lucide="check" class="w-4 h-4"></i> Simple Process</div>
+                    <h2>How It Works</h2>
+                    <p class="text-muted max-w-2xl mx-auto">Downloading videos has never been easier with our desktop application.</p>
+                </div>
+
+                <div class="steps-grid">
+                    <div class="step-card glass-panel hover-purple">
+                        <div class="step-number text-purple-400 bg-purple-500/20">1</div>
+                        <h3>Install App</h3>
+                        <p class="text-muted">Download and install the desktop application for your operating system.</p>
+                    </div>
+                    <div class="step-card glass-panel hover-violet">
+                        <div class="step-number text-violet-400 bg-violet-500/20">2</div>
+                        <h3>Paste URL</h3>
+                        <p class="text-muted">Copy the video URL from any supported website and paste it into the application.</p>
+                    </div>
+                    <div class="step-card glass-panel hover-green">
+                        <div class="step-number text-green-400 bg-green-500/20">3</div>
+                        <h3>Download</h3>
+                        <p class="text-muted">Select your preferred format and quality, then click download to save the video.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="badge-subtle"><i data-lucide="message-square" class="w-4 h-4"></i> What People Say</div>
+                    <h2>Loved by thousands</h2>
+                    <p class="text-muted max-w-2xl mx-auto">Don't just take our word for it. Here's what our users have to say about NexDown.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card glass-panel">
+                        <i data-lucide="quote" class="text-purple-500/30 w-10 h-10 mb-4"></i>
+                        <p class="text-slate-300 mb-6">"NexDown is by far the best video downloader I've ever used. It's fast, reliable, and supports all the sites I need."</p>
+                        <div class="user-info">
+                            <div class="avatar bg-purple-500/20 text-purple-400">A</div>
+                            <div>
+                                <div class="name">Alex Johnson</div>
+                                <div class="role text-muted text-sm">Content Creator</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <i data-lucide="quote" class="text-violet-500/30 w-10 h-10 mb-4"></i>
+                        <p class="text-slate-300 mb-6">"I've tried many downloaders, but this one stands out. The interface is clean, and it downloads videos in seconds."</p>
+                        <div class="user-info">
+                            <div class="avatar bg-violet-500/20 text-violet-400">S</div>
+                            <div>
+                                <div class="name">Sarah Miller</div>
+                                <div class="role text-muted text-sm">Digital Marketer</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card glass-panel">
+                        <i data-lucide="quote" class="text-pink-500/30 w-10 h-10 mb-4"></i>
+                        <p class="text-slate-300 mb-6">"The playlist downloading feature saves me hours of work. And it's completely free! Highly recommended to everyone."</p>
+                        <div class="user-info">
+                            <div class="avatar bg-pink-500/20 text-pink-400">M</div>
+                            <div>
+                                <div class="name">Michael Chen</div>
+                                <div class="role text-muted text-sm">Educator</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="logo mb-4">
+                        <img src="assets/logo.png" alt="NexDown Logo" style="width: 24px; height: 24px; border-radius: 6px;" />
+                        <span class="logo-text">NexDown</span>
+                    </a>
+                    <p class="text-muted text-sm">Free desktop video downloader for YouTube, TikTok, Instagram, and 1,000+ sites. Save videos and audio in MP4, MP3, and high-quality formats without ads.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="assets/NexDown-Setup.exe">Download App</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Legal & Support</h4>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="mailto:support@nexdown.com">Contact Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexDown. All rights reserved.</p>
+                <p>Developed by <strong>Ahmad Khan</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

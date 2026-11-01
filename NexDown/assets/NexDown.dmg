@@ -1,0 +1,2 @@
+This is a placeholder for NexDown macOS Desktop Assistant dmg.
+Once you build the app using 'npx electron-builder' in the backend directory, replace this file with the generated installer.

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexDown Online | Free Web Video Downloader</title>
+    <meta name="description" content="Download YouTube, TikTok, Instagram, and Vimeo videos directly in your browser. Fast, free, and optimized for mobile users.">
+    <meta name="keywords" content="online video downloader, youtube downloader, download videos mobile, save mp4, mp3 downloader">
+    <meta name="robots" content="index, follow">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .online-wrapper {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .online-card {
+            width: 100%;
+            max-width: 650px;
+            background: rgba(30, 41, 59, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .quality-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        @media (min-width: 576px) {
+            .quality-options {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white">
+    <!-- Ambient Background Effects -->
+    <div class="ambient-bg">
+        <div class="ambient-blob blob-purple top-left"></div>
+        <div class="ambient-blob blob-violet top-right"></div>
+        <div class="ambient-blob blob-purple-light bottom-left"></div>
+        <div class="ambient-blob blob-violet-light bottom-right"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="NexDown Logo" style="width: 32px; height: 32px; border-radius: 8px;" />
+                <span class="logo-text">NexDown</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#how-it-works">How It Works</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-primary">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span>Back to Home</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Downloader Area -->
+    <main class="online-wrapper">
+        <div class="online-card">
+            <div class="section-header text-center" style="margin-bottom: 30px;">
+                <div class="badge-subtle"><i data-lucide="globe" class="w-4 h-4"></i> Web Downloader</div>
+                <h2 style="font-size: 2rem; margin-top: 10px;">Download Video / Audio</h2>
+                <p class="text-muted" style="font-size: 0.95rem; margin-top: 8px;">Supports YouTube, TikTok, Instagram, Facebook, and more.</p>
+            </div>
+
+            <form id="online-downloader-form" class="downloader-form">
+                <div class="input-group">
+                    <div class="url-input-wrapper">
+                        <i data-lucide="link" class="input-icon"></i>
+                        <input type="url" id="online-url" placeholder="Paste your video link here..." required />
+                    </div>
+                </div>
+                <div class="quality-options">
+                    <div class="select-wrapper">
+                        <i data-lucide="sliders" class="select-icon"></i>
+                        <select id="online-format-quality">
+                            <option value="auto|1080">Video - 1080p (Full HD)</option>
+                            <option value="auto|720" selected>Video - 720p (HD)</option>
+                            <option value="auto|480">Video - 480p</option>
+                            <option value="auto|360">Video - 360p</option>
+                            <option value="audio|best">Audio Only - MP3</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="online-submit-btn" class="btn btn-primary-gradient btn-large" style="width: 100%; justify-content: center; padding: 14px 20px;">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        <span>Download</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Progress / Status Area -->
+            <div id="online-status" class="downloader-status hidden" style="margin-top: 30px;">
+                <div class="status-icon-spinner">
+                    <div class="spinner"></div>
+                </div>
+                <div class="status-content">
+                    <h4 id="online-status-title">Processing video...</h4>
+                    <p id="online-status-desc" class="text-muted">Analyzing link and fetching download tunnels. Please wait.</p>
+                </div>
+            </div>
+
+            <!-- Error Message Area -->
+            <div id="online-error" class="downloader-error hidden" style="margin-top: 30px;">
+                <i data-lucide="alert-circle" class="error-icon"></i>
+                <div class="error-content">
+                    <h4>Unable to download</h4>
+                    <p id="online-error-desc" class="text-muted">Please verify the link and try again.</p>
+                </div>
+            </div>
+
+            <!-- Success / Download Button Area -->
+            <div id="online-success" class="downloader-success hidden" style="margin-top: 30px;">
+                <i data-lucide="check-circle-2" class="success-icon"></i>
+                <div class="success-content">
+                    <h4>Video Processed Successfully!</h4>
+                    <p class="text-muted">Your file is ready for download.</p>
+                    <a id="online-download-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-success mt-3" style="width: 100%; text-align: center;">
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                        <span>Save File to Device</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2026 NexDown. All rights reserved.</p>
+                <p>Developed by <strong>Ahmad Khan</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="online.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
