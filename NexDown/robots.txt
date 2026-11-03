@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nexdown.netlify.app/sitemap.xml
+Sitemap: https://nexdownlode.vercel.app/sitemap.xml
