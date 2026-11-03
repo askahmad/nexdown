@@ -1,7 +1,7 @@
-﻿// ─────────────────────────────────────────────
+// ─────────────────────────────────────────────
 //  NexDown — server.js
 //  Local Node.js backend (runs on localhost:7474)
-//  Handles download requests from the extension
+//  Handles download requests for desktop app and web client
 // ─────────────────────────────────────────────
 //
 //  HOW TO RUN:
@@ -21,7 +21,7 @@ const app  = express();
 const PORT = 7474;
 
 // ── Middleware ────────────────────────────────
-app.use(cors({ origin: '*' })); // Allow Chrome extension
+app.use(cors({ origin: '*' })); // Allow local and web clients to connect
 app.use(express.json());
 
 // ── In-memory job tracker ────────────────────â”€
