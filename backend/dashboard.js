@@ -24,28 +24,70 @@ const playlistRangeInput = document.getElementById('playlist-range-input');
 const chkEmbed       = document.getElementById('chk-embed');
 const pathInput      = document.getElementById('path-input');
 
-// ── Update Banner Elements ──
+// ── Update Banner & Manual Check Elements ──
 const updateBanner = document.getElementById('update-banner');
 const updateText = document.getElementById('update-text');
 const btnUpdateInstall = document.getElementById('btn-update-install');
+const btnCheckUpdate = document.getElementById('btn-check-update');
+
+let updateBannerTimer = null;
 
 if (ipcRenderer) {
   ipcRenderer.on('update_status', (event, data) => {
-    // Only display banner when an update is actively available, downloading, or ready to install
-    if (data.status === 'available' || data.status === 'downloading' || data.status === 'downloaded') {
+    if (updateBannerTimer) {
+      clearTimeout(updateBannerTimer);
+      updateBannerTimer = null;
+    }
+
+    if (data.status === 'checking') {
+      updateBanner.classList.add('show');
+      updateText.textContent = data.text || 'Checking for updates...';
+      btnUpdateInstall.style.display = 'none';
+      if (btnCheckUpdate) {
+        btnCheckUpdate.disabled = true;
+        btnCheckUpdate.textContent = 'Checking...';
+      }
+    } else if (data.status === 'available' || data.status === 'downloading') {
       updateBanner.classList.add('show');
       updateText.textContent = data.text;
-
-      if (data.status === 'downloaded') {
-        btnUpdateInstall.style.display = 'block';
-      } else {
-        btnUpdateInstall.style.display = 'none';
+      btnUpdateInstall.style.display = 'none';
+      if (btnCheckUpdate) {
+        btnCheckUpdate.disabled = true;
+        btnCheckUpdate.textContent = 'Downloading...';
       }
+    } else if (data.status === 'downloaded') {
+      updateBanner.classList.add('show');
+      updateText.textContent = data.text || 'Update ready to install!';
+      btnUpdateInstall.style.display = 'block';
+      if (btnCheckUpdate) {
+        btnCheckUpdate.disabled = false;
+        btnCheckUpdate.innerHTML = '&#x21BB; Check for Updates';
+      }
+    } else if (data.status === 'up-to-date' || data.status === 'info') {
+      updateBanner.classList.add('show');
+      updateText.textContent = data.text;
+      btnUpdateInstall.style.display = 'none';
+      if (btnCheckUpdate) {
+        btnCheckUpdate.disabled = false;
+        btnCheckUpdate.innerHTML = '&#x21BB; Check for Updates';
+      }
+      updateBannerTimer = setTimeout(() => {
+        updateBanner.classList.remove('show');
+      }, 4000);
     } else {
-      // Hide banner for silent background states (checking, not-available, error)
       updateBanner.classList.remove('show');
+      if (btnCheckUpdate) {
+        btnCheckUpdate.disabled = false;
+        btnCheckUpdate.innerHTML = '&#x21BB; Check for Updates';
+      }
     }
   });
+
+  if (btnCheckUpdate) {
+    btnCheckUpdate.addEventListener('click', () => {
+      ipcRenderer.send('check-update-manual');
+    });
+  }
 
   btnUpdateInstall.addEventListener('click', () => {
     ipcRenderer.send('install-update');

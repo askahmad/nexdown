@@ -21,7 +21,8 @@
     ],
     "win": {
       "target": "nsis",
-      "icon": "assets/icon.png"
+      "icon": "assets/icon.png",
+      "artifactName": "NexDown-Setup.${ext}"
     },
     "extraResources": [
       "yt-dlp.exe"

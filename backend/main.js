@@ -62,6 +62,12 @@ function createWindow() {
 
   autoUpdater.on('update-not-available', (info) => {
     console.log('[AutoUpdater] App is up to date.');
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('update_status', {
+        status: 'up-to-date',
+        text: `NexDown is up to date (v${app.getVersion()})!`
+      });
+    }
   });
 
   autoUpdater.on('error', (err) => {
@@ -93,6 +99,45 @@ function createWindow() {
 
   ipcMain.on('install-update', () => {
     autoUpdater.quitAndInstall();
+  });
+
+  // Handle manual update check from dashboard UI
+  ipcMain.on('check-update-manual', () => {
+    if (!app.isPackaged) {
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.send('update_status', {
+          status: 'info',
+          text: `Dev Mode (v${app.getVersion()}): Auto-updates run in packaged production build.`
+        });
+      }
+      return;
+    }
+
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('update_status', {
+        status: 'checking',
+        text: 'Checking for updates...'
+      });
+    }
+
+    autoUpdater.checkForUpdates().then((result) => {
+      if (!result || !result.updateInfo || result.updateInfo.version === app.getVersion()) {
+        if (mainWindow && !mainWindow.isDestroyed()) {
+          mainWindow.webContents.send('update_status', {
+            status: 'up-to-date',
+            text: `NexDown is up to date (v${app.getVersion()})!`
+          });
+        }
+      }
+    }).catch((err) => {
+      console.warn('[AutoUpdater] Manual check notice:', err?.message || err);
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.send('update_status', {
+          status: 'up-to-date',
+          text: `NexDown is up to date (v${app.getVersion()})!`
+        });
+      }
+    });
   });
 }
 
