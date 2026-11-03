@@ -1,5 +1,18 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "NexDown",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/NexDown/index.html"
+    },
+    {
+      "source": "/assets/:path*",
+      "destination": "/NexDown/assets/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/NexDown/:path*"
+    }
+  ]
 }
