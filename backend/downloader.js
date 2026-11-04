@@ -244,6 +244,7 @@ function downloadVideo({ id, url, format = 'mp4', quality = 'best', embed = fals
       ...embedArgs,
       ...CONCURRENT_ARGS,
       ...ARIA2C_ARGS,
+      '--extractor-args', 'youtube:player_client=android,web',
       '--ignore-errors',
       '--no-warnings',
       '--newline',                    // one line per progress update
@@ -347,6 +348,7 @@ function downloadPlaylist({ id, url, format = 'mp4', quality = 'best', embed = f
       ...embedArgs,
       ...CONCURRENT_ARGS,
       ...ARIA2C_ARGS,
+      '--extractor-args', 'youtube:player_client=android,web',
       ...playlistItemsArg,
       '--yes-playlist',
       '--ignore-errors',
