@@ -257,9 +257,18 @@ function downloadVideo({ id, url, format = 'mp4', quality = 'best', embed = fals
 
     let lastSpeed = null;
     let progressVal = 0;
+    let lastError = '';
+
+    const captureError = (line) => {
+      const match = line.match(/ERROR:\s*(?:\[[^\]]+\])?\s*(.*)/i);
+      if (match && match[1]) {
+        lastError = match[1].trim();
+      }
+    };
 
     const handleVideoLine = (line) => {
       let handled = false;
+      captureError(line);
       const speed = parseSpeedMB(line);
       if (speed !== null) {
         lastSpeed = speed;
@@ -300,7 +309,7 @@ function downloadVideo({ id, url, format = 'mp4', quality = 'best', embed = fals
         onProgress({ status: 'done', progress: 100 });
         resolve();
       } else {
-        reject(new Error(`yt-dlp exited with code ${code}`));
+        reject(new Error(lastError || `Download failed (exit code ${code})`));
       }
     });
 

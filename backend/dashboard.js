@@ -307,7 +307,7 @@ async function pollProgress(id) {
       const res  = await fetch(`${BACKEND}/progress/${id}`);
       const data = await res.json();
 
-      updateItemStatus(id, data.status, data.progress, data.downloaded, data.speed, data.total);
+      updateItemStatus(id, data.status, data.progress, data.downloaded, data.speed, data.total, data.error);
 
       if (['done', 'error', 'canceled', 'paused'].includes(data.status)) {
         activePolls.delete(id);
@@ -327,11 +327,12 @@ function resumePollingForActiveJobs() {
   });
 }
 
-function updateItemStatus(id, status, progress, downloaded = 0, speed = null, total = null) {
+function updateItemStatus(id, status, progress, downloaded = 0, speed = null, total = null, error = null) {
   const item = queue.find(i => i.id === id);
   if (!item) return;
 
   item.status = status;
+  if (error) item.error = error;
   if (Number.isFinite(progress)) item.progress = Math.round(progress);
   if (Number.isFinite(downloaded)) item.downloaded = downloaded;
   if (Number.isFinite(speed)) item.speed = speed;
@@ -550,6 +551,10 @@ function renderQueue() {
         <div class="q-sub">
           <span>${leftText}</span>
           <span>${rightText}</span>
+        </div>` : ''}
+      ${item.status === 'error' ? `
+        <div class="q-sub" style="color: #ef4444; font-size: 11px; margin-top: 4px; line-height: 1.3;">
+          <span>⚠ ${item.error || 'Video unavailable, deleted, or unsupported'}</span>
         </div>` : ''}
     </div>
   `;
